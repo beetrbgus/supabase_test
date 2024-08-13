@@ -62,7 +62,9 @@ class SeekBarState extends State<SeekBar> {
               },
               onChangeEnd: (value) {
                 if (widget.onChangeEnd != null) {
-                  widget.onChangeEnd!(Duration(milliseconds: value.round()));
+                  widget.onChangeEnd!(
+                    Duration(milliseconds: value.round()),
+                  );
                 }
                 _dragValue = null;
               },
