@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_test/data/controller/city_controller.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(cityProvider);
 
-class _HomePageState extends State<HomePage> {
-  final _future = Supabase.instance.client.from('countries').select();
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: _future,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          final countries = snapshot.data!;
+      body: state.when(
+        data: (data) {
           return ListView.builder(
-            itemCount: countries.length,
+            itemCount: data.length,
             itemBuilder: ((context, index) {
-              final country = countries[index];
+              final city = data[index];
               return ListTile(
-                title: Text(country['name']),
+                title: Text(city.name),
               );
             }),
+          );
+        },
+        error: (error, stackTrace) => Container(),
+        loading: () {
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         },
       ),
