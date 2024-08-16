@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_test/data/datasource/supabase_db_name.dart';
+import 'package:supabase_test/data/dto/city_create_dto.dart';
 
 final cityDataSourceProvider = Provider((ref) => CityDatasource());
 
@@ -14,5 +15,11 @@ class CityDatasource {
         return cityJsonMap;
       },
     );
+  }
+
+  Future<void> addCity(CityCreateDto cityCreateDto) async {
+    await supabaseClient
+        .from(SupabaseDBName.counties.dbName)
+        .insert(cityCreateDto.toJson());
   }
 }

@@ -20,4 +20,9 @@ class CityController extends AsyncNotifier<List<City>> {
     state = const AsyncLoading();
     state = AsyncData(await _cityRepository.getCityInfo());
   }
+
+  void addCity(String cityName) {
+    _cityRepository.addCity(cityName);
+    _fetchCityList();
+  }
 }
