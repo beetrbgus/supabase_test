@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_test/cloudflare/r2/cloudflare_init.dart';
 import 'package:supabase_test/my_app.dart';
 
 void main() async {
@@ -10,13 +11,12 @@ void main() async {
   var SUPABASE_URL = dotenv.get("SUPABASE_URL");
   var ANON_KEY = dotenv.get("ANON_KEY");
   var BUCKET_NAME = dotenv.get("BUCKET_NAME");
-  print("BUCKET_NAME is $BUCKET_NAME");
 
   await Supabase.initialize(
     url: SUPABASE_URL,
     anonKey: ANON_KEY,
   );
-
+  CloudflareInit.init();
   final a =
       await Supabase.instance.client.storage.from(BUCKET_NAME).list().then(
     (value) {
