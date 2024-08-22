@@ -16,12 +16,15 @@ dependencies:
   supabase_flutter: ^2.5.11
   flutter_dotenv: ^5.1.0
   just_audio: ^0.9.39
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   freezed: ^2.5.2
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   flutter_riverpod: ^2.5.1
   cloudflare: ^3.2.1+1
+  aws_s3_api: ^2.0.0
+  aws_signature_v4: ^0.6.2
+  dio: ^5.6.0
 
 dev_dependencies:
   flutter_test:
