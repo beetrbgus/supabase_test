@@ -3,6 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supabase_test/audio/position_data.dart';
 import 'package:supabase_test/audio/seek_bar.dart';
+import 'package:supabase_test/common/app_string_format.dart';
 
 class MyVideo extends StatefulWidget {
   const MyVideo({super.key});
@@ -125,12 +126,24 @@ class _MyVideoState extends State<MyVideo> {
             stream: _positionDataStream,
             builder: (context, snapshot) {
               final positionData = snapshot.data;
+
+              if (positionData == null) {
+                return const CircularProgressIndicator();
+              }
               Duration remaining = (positionData?.duration != null &&
                       positionData?.position != null)
                   ? positionData!.duration - positionData.position
                   : Duration.zero;
+              print("remaining");
+              print(remaining);
+
+              String currentPosition =
+                  AppStringFormat.durationFormat(positionData.position);
+              String endPosition =
+                  AppStringFormat.durationFormat(positionData.position);
               return Row(
                 children: [
+                  Text(currentPosition),
                   Expanded(
                     child: SeekBar(
                       duration: positionData?.duration ?? Duration.zero,
