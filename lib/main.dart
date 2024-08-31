@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:supabase_test/audio/my_video.dart';
 import 'package:supabase_test/cloudflare/config/cloudflare_init.dart';
+import 'package:supabase_test/supabase/my_video.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

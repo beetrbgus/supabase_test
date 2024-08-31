@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:supabase_test/audio/position_data.dart';
-import 'package:supabase_test/audio/seek_bar.dart';
 import 'package:supabase_test/common/app_string_format.dart';
+import 'package:supabase_test/supabase/position_data.dart';
+import 'package:supabase_test/supabase/seek_bar.dart';
 
 class MyVideo extends StatefulWidget {
   const MyVideo({super.key});
